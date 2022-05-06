@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 let AddContact = () => {
   return (
@@ -72,8 +73,11 @@ let AddContact = () => {
                   <input
                     type="submit"
                     className="btn btn-success"
-                    placeholder="Create"
+                    value="Create"
                   />
+                  <Link className="btn btn-dark ms-2" to={`/contacts/list`}>
+                    Cancel
+                  </Link>
                 </div>
               </form>
             </div>
