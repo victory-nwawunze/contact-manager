@@ -1,11 +1,12 @@
 /** @format */
 
 import React from "react";
-let Navbar = () => {
+
+let ViewContact = () => {
   return (
     <React.Fragment>
-      <h2>Navbar</h2>
+      <h2>ViewContact</h2>
     </React.Fragment>
   );
 };
-export default Navbar;
+export default ViewContact;
