@@ -2,7 +2,7 @@
 
 // Connect the API
 import axios from "axios";
-export class contactService {
+export class ContactService {
   // Get server URL
   static serverURL = `http://localhost:9000`;
 
