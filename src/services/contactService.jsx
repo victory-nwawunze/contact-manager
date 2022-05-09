@@ -12,4 +12,10 @@ export class ContactService {
     // Get Request
     return axios.get(dataURL);
   }
+
+  // Get Single contact
+  static getContact(contactId) {
+    let dataURL = `${this.serverURL}/contacts/${contactId}`;
+    return axios.get(dataURL);
+  }
 }

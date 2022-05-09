@@ -1,11 +1,42 @@
 /** @format */
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ContactService } from "../../../services/ContactService";
+import Spinner from "../../spinner/Spinner";
 
 let ViewContact = () => {
+  let { contactId } = useParams();
+  let [state, setState] = useState({
+    loading: false,
+    contact: {},
+    errorMessage: "",
+  });
+  const callContact = async () => {
+    try {
+      setState({ ...state, loading: true });
+      let response = await ContactService.getContact(contactId);
+      console.log(response.data);
+      setState({
+        ...state,
+        loading: false,
+        contact: response.data,
+      });
+    } catch (error) {
+      setState({
+        ...state,
+        loading: false,
+        errorMessage: error.message,
+      });
+    }
+  };
+  useEffect(() => {
+    callContact();
+  }, [contactId]);
+  let { loading, contact, errorMessage } = state;
   return (
     <React.Fragment>
+      <h2>{contactId}</h2>
       <section className="view-contact-inro p-3">
         <div className="container">
           <div className="row">
@@ -21,47 +52,54 @@ let ViewContact = () => {
           </div>
         </div>
       </section>
-      <section className="view-contact pt-3">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-4">
-              <img
-                src="http://assets.stickpng.com/images/585e4bcdcb11b227491c3396.png"
-                className="contact-img"
-              />
-            </div>
-            <div className="col-md-8">
-              <ul className="list-group">
-                <li className="list-group-item list-group-item-action">
-                  Name : <span className="fw-bold">Rajan</span>
-                </li>
-                <li className="list-group-item list-group-item-action">
-                  Mobile : <span className="fw-bold">0202888333</span>
-                </li>
-                <li className="list-group-item list-group-item-action">
-                  Email : <span className="fw-bold">Rajan@gmail.com</span>
-                </li>
-                <li className="list-group-item list-group-item-action">
-                  Company : <span className="fw-bold">Rajan@gmail.com</span>
-                </li>
-                <li className="list-group-item list-group-item-action">
-                  Title : <span className="fw-bold">Rajan@gmail.com</span>
-                </li>
-                <li className="list-group-item list-group-item-action">
-                  Group : <span className="fw-bold">Rajan@gmail.com</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Link to={`/contacts/list`} className="btn btn-warning">
-                Back
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Rendering data */}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          {Object.keys(contact).length > 0 && (
+            <section className="view-contact pt-3">
+              <div className="container">
+                <div className="row align-items-center">
+                  <div className="col-md-4">
+                    <img src={contact.photo} className="contact-img" />
+                  </div>
+                  <div className="col-md-8">
+                    <ul className="list-group">
+                      <li className="list-group-item list-group-item-action">
+                        Name : <span className="fw-bold">Rajan</span>
+                      </li>
+                      <li className="list-group-item list-group-item-action">
+                        Mobile : <span className="fw-bold">0202888333</span>
+                      </li>
+                      <li className="list-group-item list-group-item-action">
+                        Email : <span className="fw-bold">Rajan@gmail.com</span>
+                      </li>
+                      <li className="list-group-item list-group-item-action">
+                        Company :{" "}
+                        <span className="fw-bold">Rajan@gmail.com</span>
+                      </li>
+                      <li className="list-group-item list-group-item-action">
+                        Title : <span className="fw-bold">Rajan@gmail.com</span>
+                      </li>
+                      <li className="list-group-item list-group-item-action">
+                        Group : <span className="fw-bold">Rajan@gmail.com</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <Link to={`/contacts/list`} className="btn btn-warning">
+                      Back
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };
