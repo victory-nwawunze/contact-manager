@@ -18,4 +18,17 @@ export class ContactService {
     let dataURL = `${this.serverURL}/contacts/${contactId}`;
     return axios.get(dataURL);
   }
+
+  // Get all groups data
+  static getGroups() {
+    let dataURL = `${this.serverURL}/groups`;
+    return axios.get(dataURL);
+  }
+
+  // Get single group
+  static getGroup(contact) {
+    let groupId = contact.groupId;
+    let dataURL = `${this.serverURL}/groups/${groupId}`;
+    return axios.get(dataURL);
+  }
 }
