@@ -67,23 +67,25 @@ let ViewContact = () => {
                   <div className="col-md-8">
                     <ul className="list-group">
                       <li className="list-group-item list-group-item-action">
-                        Name : <span className="fw-bold">Rajan</span>
+                        Name : <span className="fw-bold">{contact.name}</span>
                       </li>
                       <li className="list-group-item list-group-item-action">
-                        Mobile : <span className="fw-bold">0202888333</span>
+                        Mobile :{" "}
+                        <span className="fw-bold">{contact.mobile}</span>
                       </li>
                       <li className="list-group-item list-group-item-action">
-                        Email : <span className="fw-bold">Rajan@gmail.com</span>
+                        Email : <span className="fw-bold">{contact.email}</span>
                       </li>
                       <li className="list-group-item list-group-item-action">
                         Company :{" "}
-                        <span className="fw-bold">Rajan@gmail.com</span>
+                        <span className="fw-bold">{contact.company}</span>
                       </li>
                       <li className="list-group-item list-group-item-action">
-                        Title : <span className="fw-bold">Rajan@gmail.com</span>
+                        Title : <span className="fw-bold">{contact.title}</span>
                       </li>
                       <li className="list-group-item list-group-item-action">
-                        Group : <span className="fw-bold">Rajan@gmail.com</span>
+                        Group :
+                        <span className="fw-bold">{contact.groupId}</span>
                       </li>
                     </ul>
                   </div>
