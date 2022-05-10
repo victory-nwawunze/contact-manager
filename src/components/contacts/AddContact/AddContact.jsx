@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ContactService } from "../../../services/ContactService";
 
 let AddContact = () => {
   let [state, setState] = useState({
@@ -29,6 +30,21 @@ let AddContact = () => {
     });
   };
 
+  // Get all groups function
+  const getAllGroups = async () => {
+    try {
+      setState({ ...state, loading: true });
+      let response = await ContactService.getGroups();
+      setState({
+        ...state,
+        loading: false,
+        groups: response.data,
+      });
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getAllGroups();
+  }, []);
   // Destructuring
   let { loading, groups, errorMessage, contact } = state;
   return (
@@ -118,6 +134,10 @@ let AddContact = () => {
                     className="form-control"
                   >
                     <option value="">Select a group</option>
+                    {groups.length > 0 &&
+                      groups.map((group) => {
+                        return <option key={group.id}>{group.name}</option>;
+                      })}
                   </select>
                 </div>
                 <div className="mb-2">
