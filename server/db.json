@@ -6,8 +6,8 @@
       "email": "BradL@gmail.com",
       "title": "Youtuber",
       "mobile": "383874749",
-      "photo": "http://assets.stickpng.com/images/585e4bcdcb11b227491c3396.png",
-      "company":"Gta",
+      "photo": "https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg",
+      "company": "Gta",
       "groupId": "3"
     },
     {
@@ -17,7 +17,7 @@
       "title": "Astronut",
       "mobile": "090748392929",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwZ7ogb3Ufi4stcCQkMGXmirwq-55cz2zcQ&usqp=CAU",
-      "company":"High",
+      "company": "High",
       "groupId": "4"
     },
     {
@@ -26,7 +26,7 @@
       "email": "Krainsmathan@gmail.com",
       "title": "Tech Leader",
       "mobile": "93938388494",
-      "company":"krust",
+      "company": "krust",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuDoisN_XW3IVsEn4qXXTiqfTFBCCQOWqDFg&usqp=CAU",
       "groupId": "5"
     },
@@ -36,9 +36,19 @@
       "email": "Ritchsand@gmail.com",
       "title": "Software developer",
       "mobile": "929838383920",
-      "company":"petty",
+      "company": "petty",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn5aytU2bHnVPCsgfKLPxObZwFIdte5rjFGA&usqp=CAU",
       "groupId": "6"
+    },
+    {
+      "name": "victory",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXSTblEVkkdJh15jlAbC3FpvuzCKb1o-pQQA&usqp=CAU",
+      "mobile": "8484848755757",
+      "email": "victorynwawunze@gmail.com",
+      "company": "NXS",
+      "title": "HR",
+      "groupId": "4",
+      "id": "rKxR2du"
     }
   ],
   "groups": [
