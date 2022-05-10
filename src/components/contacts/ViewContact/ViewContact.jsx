@@ -13,6 +13,7 @@ let ViewContact = () => {
     errorMessage: "",
     group: {},
   });
+  // render a particular contact
   const callContact = async () => {
     try {
       setState({ ...state, loading: true });

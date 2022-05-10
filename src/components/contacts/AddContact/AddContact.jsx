@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 let AddContact = () => {
@@ -18,6 +18,19 @@ let AddContact = () => {
     groups: [],
     errorMessage: "",
   });
+  // Let update input function
+  const updateInput = (event) => {
+    setState({
+      ...state,
+      contact: {
+        ...state.contact,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+
+  // Destructuring
+  let { loading, groups, errorMessage, contact } = state;
   return (
     <React.Fragment>
       <pre>{JSON.stringify(state.contact)}</pre>
@@ -39,6 +52,9 @@ let AddContact = () => {
               <form>
                 <div className="mb-2">
                   <input
+                    name="name"
+                    value={contact.name}
+                    onChange={updateInput}
                     type="text"
                     className="form-control"
                     placeholder="Name"
@@ -46,6 +62,9 @@ let AddContact = () => {
                 </div>
                 <div className="mb-2">
                   <input
+                    name="photo"
+                    value={contact.photo}
+                    onChange={updateInput}
                     type="text"
                     className="form-control"
                     placeholder="Phote URL"
@@ -53,6 +72,9 @@ let AddContact = () => {
                 </div>
                 <div className="mb-2">
                   <input
+                    name="mobile"
+                    value={contact.mobile}
+                    onChange={updateInput}
                     type="number"
                     className="form-control"
                     placeholder="Mobile number"
@@ -60,6 +82,9 @@ let AddContact = () => {
                 </div>
                 <div className="mb-2">
                   <input
+                    name="email"
+                    value={contact.email}
+                    onChange={updateInput}
                     type="email"
                     className="form-control"
                     placeholder="Email"
@@ -67,6 +92,9 @@ let AddContact = () => {
                 </div>
                 <div className="mb-2">
                   <input
+                    name="company"
+                    value={contact.company}
+                    onChange={updateInput}
                     type="text"
                     className="form-control"
                     placeholder="Company"
@@ -74,13 +102,21 @@ let AddContact = () => {
                 </div>
                 <div className="mb-2">
                   <input
+                    name="title"
+                    value={contact.title}
+                    onChange={updateInput}
                     type="text"
                     className="form-control"
                     placeholder="Title"
                   />
                 </div>
                 <div className="mb-2">
-                  <select className="form-control">
+                  <select
+                    name="groupId"
+                    value={contact.groupId}
+                    onChange={updateInput}
+                    className="form-control"
+                  >
                     <option value="">Select a group</option>
                   </select>
                 </div>
