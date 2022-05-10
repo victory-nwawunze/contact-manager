@@ -1,11 +1,26 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 let AddContact = () => {
+  let [state, setState] = useState({
+    loading: false,
+    contact: {
+      name: "",
+      photo: "",
+      mobile: "",
+      email: "",
+      company: "",
+      title: "",
+      groupId: "",
+    },
+    groups: [],
+    errorMessage: "",
+  });
   return (
     <React.Fragment>
+      <pre>{JSON.stringify(state.contact)}</pre>
       <section className="add-contact p-3">
         <div className="container">
           <div className="row">
