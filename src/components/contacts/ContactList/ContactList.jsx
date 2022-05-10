@@ -77,7 +77,6 @@ let ContactList = () => {
   let { loading, contacts, filterContacts, errorMessage } = state;
   return (
     <React.Fragment>
-      <pre>{query.text}</pre>
       <section className="contact-search p-3">
         <div className="container">
           <div className="grid">
