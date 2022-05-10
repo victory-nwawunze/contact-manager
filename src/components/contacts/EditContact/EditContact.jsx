@@ -1,11 +1,51 @@
 /** @format */
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ContactService } from "../../../services/ContactService";
 
 let EditContact = () => {
+  let { contactId } = useParams();
+  let [state, setState] = useState({
+    loading: false,
+    contact: {
+      name: "",
+      photo: "",
+      mobile: "",
+      email: "",
+      company: "",
+      title: "",
+      groupId: "",
+    },
+    groups: [],
+    errorMessage: "",
+  });
+  // Get a contact Id
+  const getAContactId = async () => {
+    try {
+      setState({ ...state, loading: false });
+      let response = await ContactService.getContact(contactId);
+      setState({
+        ...state,
+        loading: false,
+        contact: response.data,
+      });
+    } catch (error) {
+      setState({
+        ...state,
+        loading: false,
+        errorMessage: error.message,
+      });
+    }
+  };
+  useEffect(() => {
+    getAContactId();
+  }, [contactId]);
+  // Destructing
+  let { loading, contact, groups, errorMessage } = state;
   return (
     <React.Fragment>
+      <pre>{JSON.stringify(contact)}</pre>
       <section className="add-contact p-3">
         <div className="container">
           <div className="row">
@@ -24,6 +64,7 @@ let EditContact = () => {
               <form>
                 <div className="mb-2">
                   <input
+                    value={contact.name}
                     type="text"
                     className="form-control"
                     placeholder="Name"
