@@ -1,10 +1,11 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ContactService } from "../../../services/ContactService";
 
 let AddContact = () => {
+  let navigate = useNavigate();
   let [state, setState] = useState({
     loading: false,
     contact: {
@@ -42,14 +43,28 @@ let AddContact = () => {
       });
     } catch (error) {}
   };
+  // Calling getAllGroups function
   useEffect(() => {
     getAllGroups();
   }, []);
+
+  // To submit form function
+  const submitForm = async (event) => {
+    event.preventDefault();
+    try {
+      let response = await ContactService.createContact(state.contact);
+      if (response) {
+        navigate("/contacts/list", { replace: true });
+      }
+    } catch (error) {
+      setState({ ...state, errorMessage: error.message });
+      navigate("/contacts/add", { replace: false });
+    }
+  };
   // Destructuring
   let { loading, groups, errorMessage, contact } = state;
   return (
     <React.Fragment>
-      <pre>{JSON.stringify(state.contact)}</pre>
       <section className="add-contact p-3">
         <div className="container">
           <div className="row">
@@ -65,7 +80,8 @@ let AddContact = () => {
           </div>
           <div className="row">
             <div className="col-md-4">
-              <form>
+              {/* To submit form we will use onSubmit */}
+              <form onSubmit={submitForm}>
                 <div className="mb-2">
                   <input
                     name="name"
@@ -136,7 +152,11 @@ let AddContact = () => {
                     <option value="">Select a group</option>
                     {groups.length > 0 &&
                       groups.map((group) => {
-                        return <option key={group.id}>{group.name}</option>;
+                        return (
+                          <option key={group.id} value={group.id}>
+                            {group.name}
+                          </option>
+                        );
                       })}
                   </select>
                 </div>
